@@ -77,7 +77,20 @@ export default function AnalyzePage() {
       {inputMethod === 'manual' && (
         <div className="grid gap-2 rounded bg-white p-4 shadow-sm md:grid-cols-2">
           {['color', 'texture', 'smell', 'drainage', 'previous_crop', 'months_since_last_fertilized'].map((field) => (
-            <input key={field} className="rounded border p-2" placeholder={field.replaceAll('_', ' ')} onChange={(e) => setManual({ ...manual, [field]: e.target.value })} />
+            <input
+              key={field}
+              aria-label={{
+                color: 'Soil color',
+                texture: 'Soil texture',
+                smell: 'Soil smell',
+                drainage: 'Drainage condition',
+                previous_crop: 'Previous crop',
+                months_since_last_fertilized: 'Number of months since last fertilization'
+              }[field]}
+              className="rounded border p-2"
+              placeholder={field.replaceAll('_', ' ')}
+              onChange={(e) => setManual({ ...manual, [field]: e.target.value })}
+            />
           ))}
         </div>
       )}
@@ -85,7 +98,7 @@ export default function AnalyzePage() {
       {inputMethod === 'sensor' && (
         <div className="grid gap-2 rounded bg-white p-4 shadow-sm md:grid-cols-3">
           {['ph', 'moisture', 'temperature', 'nitrogen_ppm', 'phosphorus_ppm', 'potassium_ppm'].map((field) => (
-            <input key={field} className="rounded border p-2" type="number" placeholder={field} onChange={(e) => setSensor({ ...sensor, [field]: Number(e.target.value) })} />
+            <input key={field} aria-label={field} className="rounded border p-2" type="number" placeholder={field} onChange={(e) => setSensor({ ...sensor, [field]: Number(e.target.value) })} />
           ))}
         </div>
       )}

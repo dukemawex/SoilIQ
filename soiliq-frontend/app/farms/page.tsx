@@ -33,7 +33,7 @@ export default function FarmsPage() {
         <h2 className="mb-2 text-xl">Add Farm</h2>
         <div className="grid gap-2 md:grid-cols-2">
           {['name', 'crop_type', 'area_hectares', 'country', 'state_province'].map((field) => (
-            <input key={field} className="rounded border p-2" placeholder={field} onChange={(e) => setForm({ ...form, [field]: e.target.value })} />
+            <input key={field} aria-label={field.replaceAll('_', ' ')} className="rounded border p-2" placeholder={field} onChange={(e) => setForm({ ...form, [field]: e.target.value })} />
           ))}
         </div>
         <div className="mt-2"><FarmMapPin onChange={(coords) => setForm({ ...form, latitude: coords.lat, longitude: coords.lng })} /></div>

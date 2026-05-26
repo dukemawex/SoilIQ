@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "netlify dev",
-    "test": "jest --runInBand",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --runInBand",
     "build": "echo 'Netlify functions build handled by Netlify CLI'"
   },
   "dependencies": {

@@ -1,13 +1,9 @@
 import './globals.css';
 import Link from 'next/link';
-import { DM_Mono, Fraunces } from 'next/font/google';
-
-const fraunces = Fraunces({ subsets: ['latin'], variable: '--font-fraunces' });
-const dmMono = DM_Mono({ subsets: ['latin'], weight: ['400', '500'], variable: '--font-dm-mono' });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${dmMono.variable}`}>
+    <html lang="en">
       <body>
         <header className="border-b border-soil/20 bg-linen/90 backdrop-blur">
           <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">

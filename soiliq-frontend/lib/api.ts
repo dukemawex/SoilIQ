@@ -11,7 +11,14 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
       ...(token ? { Authorization: 'Bearer ' + token } : {})
     }
   });
-  if (!res.ok) throw new Error(await res.text());
+  if (!res.ok) {
+    const contentType = res.headers.get('content-type') || '';
+    if (contentType.includes('application/json')) {
+      const body = await res.json();
+      throw new Error(body?.error || body?.message || 'Request failed');
+    }
+    throw new Error(await res.text());
+  }
   return res.json();
 }
 
