@@ -12,6 +12,6 @@ for (const key of required) {
 export const env = {
   SUPABASE_URL: process.env.SUPABASE_URL,
   SUPABASE_SERVICE_KEY: process.env.SUPABASE_SERVICE_KEY,
-  ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY,
+  OPENROUTER_API_KEY: process.env.OPENROUTER_API_KEY,
   OPENWEATHERMAP_API_KEY: process.env.OPENWEATHERMAP_API_KEY
 };

@@ -9,7 +9,7 @@ Smallholder farmers often lack affordable soil diagnostics, causing nutrient dep
 - **Frontend**: Next.js 14 App Router deployed to Vercel (`soiliq-frontend`)
 - **Backend**: Node.js Netlify Functions deployed to Netlify (`soiliq-backend`)
 - **Database/Auth/Storage**: Supabase
-- **AI**: Claude Sonnet model for structured soil analysis
+- **AI**: OpenRouter `openrouter/nvidia/nemotron-3-super-120b-a12b:free` model for structured soil analysis
 - **Weather**: OpenWeatherMap integration for context-aware recommendations
 
 ## Architecture Diagram (ASCII)
@@ -17,7 +17,7 @@ Smallholder farmers often lack affordable soil diagnostics, causing nutrient dep
 Farmer App (Next.js) --> Netlify Functions API --> Supabase (Auth, Postgres, Storage)
                          |                      \
                          |                       -> OpenWeatherMap API
-                         -> Anthropic Claude API
+                         -> OpenRouter API (Nemotron)
 ```
 
 ## API Endpoints
@@ -46,7 +46,7 @@ Farmer App (Next.js) --> Netlify Functions API --> Supabase (Auth, Postgres, Sto
 |---|---|---|
 | SUPABASE_URL | Yes | Backend |
 | SUPABASE_SERVICE_KEY | Yes | Backend |
-| ANTHROPIC_API_KEY | Yes | Backend |
+| OPENROUTER_API_KEY | Yes | Backend |
 | OPENWEATHERMAP_API_KEY | Yes | Backend |
 | NEXT_PUBLIC_SUPABASE_URL | Yes | Frontend |
 | NEXT_PUBLIC_SUPABASE_ANON_KEY | Yes | Frontend |

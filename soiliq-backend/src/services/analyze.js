@@ -1,4 +1,4 @@
-import Anthropic from '@anthropic-ai/sdk';
+import axios from 'axios';
 import sharp from 'sharp';
 import { env } from '../utils/env.js';
 
@@ -52,9 +52,7 @@ export async function prepareImageBase64(buffer) {
 }
 
 export async function runSoilAnalysis({ inputMethod, weatherContext, manualInputs, sensorReading, imageBase64 }) {
-  if (!env.ANTHROPIC_API_KEY) return fallback;
-
-  const anthropic = new Anthropic({ apiKey: env.ANTHROPIC_API_KEY });
+  if (!env.OPENROUTER_API_KEY) return fallback;
   let userPrompt = `Input method: ${inputMethod}. Weather context: ${JSON.stringify(weatherContext)}.`;
 
   if (inputMethod === 'photo') {
@@ -69,19 +67,27 @@ export async function runSoilAnalysis({ inputMethod, weatherContext, manualInput
     const content = inputMethod === 'photo'
       ? [
           { type: 'text', text: userPrompt },
-          { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: imageBase64 } }
+          { type: 'image_url', image_url: { url: `data:image/jpeg;base64,${imageBase64}` } }
         ]
       : [{ type: 'text', text: userPrompt }];
 
-    const response = await anthropic.messages.create({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 1800,
-      system: systemPrompt,
+    const response = await axios.post('https://openrouter.ai/api/v1/chat/completions', {
+      model: 'openrouter/nvidia/nemotron-3-super-120b-a12b:free',
       temperature: 0.2,
-      messages: [{ role: 'user', content }]
+      max_tokens: 1800,
+      messages: [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content }
+      ]
+    }, {
+      headers: {
+        Authorization: 'Bearer ' + env.OPENROUTER_API_KEY,
+        'Content-Type': 'application/json'
+      },
+      timeout: 60000
     });
 
-    const text = response.content?.find((item) => item.type === 'text')?.text || '';
+    const text = response.data?.choices?.[0]?.message?.content || '';
     const parsed = parseJson(text);
     return parsed || fallback;
   } catch {
