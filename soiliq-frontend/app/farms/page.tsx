@@ -17,19 +17,19 @@ export default function FarmsPage() {
 
   return (
     <div className="space-y-4">
-      <h1 className="font-heading text-3xl">Farms</h1>
-      <div className="overflow-x-auto rounded-lg bg-white shadow-sm">
+      <h1>Farms</h1>
+      <div className="surface-card overflow-x-auto">
         <table className="w-full text-sm">
-          <thead className="bg-linen"><tr><th className="p-2">Name</th><th>Crop</th><th>Area</th><th>Location</th><th>Actions</th></tr></thead>
+          <thead className="bg-slate-50"><tr><th className="p-2">Name</th><th>Crop</th><th>Area</th><th>Location</th><th>Actions</th></tr></thead>
           <tbody>
             {farms.map((farm) => (
-              <tr key={farm.id} className="border-t"><td className="p-2">{farm.name}</td><td>{farm.crop_type}</td><td>{farm.area_hectares}</td><td>{farm.country}</td><td><Link href={`/farms/${farm.id}`} className="text-soil underline">View</Link></td></tr>
+              <tr key={farm.id} className="border-t"><td className="p-2">{farm.name}</td><td>{farm.crop_type}</td><td>{farm.area_hectares}</td><td>{farm.country}</td><td><Link href={`/farms/${farm.id}`} className="font-medium text-primary hover:text-primary-dark">View</Link></td></tr>
             ))}
           </tbody>
         </table>
       </div>
 
-      <div className="rounded-lg bg-white p-4 shadow-sm">
+      <div className="surface-card p-4">
         <h2 className="mb-2 text-xl">Add Farm</h2>
         <div className="grid gap-2 md:grid-cols-2">
           {['name', 'crop_type', 'area_hectares', 'country', 'state_province'].map((field) => (
@@ -37,10 +37,7 @@ export default function FarmsPage() {
           ))}
         </div>
         <div className="mt-2"><FarmMapPin onChange={(coords) => setForm({ ...form, latitude: coords.lat, longitude: coords.lng })} /></div>
-        <button
-          className="mt-2 rounded bg-soil px-4 py-2 text-white"
-          onClick={async () => { await api.createFarm(form); await load(); }}
-        >Create Farm</button>
+        <button className="mt-2" onClick={async () => { await api.createFarm(form); await load(); }}>Create Farm</button>
       </div>
     </div>
   );
