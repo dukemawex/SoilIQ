@@ -5,15 +5,30 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        soil: '#3d1f0d',
-        leaf: '#4a7c59',
-        wheat: '#e8c547',
-        linen: '#faf6f0',
-        charcoal: '#1a1a1a'
+        primary: '#166534',
+        'primary-dark': '#14532d',
+        accent: '#D97706',
+        'accent-dark': '#B45309',
+        background: '#F9FAFB',
+        surface: '#FFFFFF',
+        text: '#1F2937',
+        muted: '#4B5563',
+        soil: '#166534',
+        leaf: '#2E7D32',
+        wheat: '#D97706',
+        linen: '#F9FAFB',
+        charcoal: '#1F2937'
       },
       fontFamily: {
-        heading: ['Fraunces', 'serif'],
+        sans: ['var(--font-sans)', 'Inter', 'Plus Jakarta Sans', 'Figtree', 'system-ui', 'sans-serif'],
+        heading: ['var(--font-sans)', 'Inter', 'Plus Jakarta Sans', 'Figtree', 'system-ui', 'sans-serif'],
         mono: ['DM Mono', 'monospace']
+      },
+      borderRadius: {
+        xl: '12px'
+      },
+      boxShadow: {
+        card: '0 1px 2px rgba(15, 23, 42, 0.06), 0 8px 24px rgba(15, 23, 42, 0.05)'
       },
       keyframes: {
         float: {

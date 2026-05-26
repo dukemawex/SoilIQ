@@ -2,9 +2,9 @@
 
 export default function RecommendationTable({ rows, onApply }: { rows: any[]; onApply?: (id: string) => void }) {
   return (
-    <div className="overflow-x-auto rounded-lg bg-white shadow-sm">
+    <div className="surface-card overflow-x-auto">
       <table className="w-full text-sm">
-        <thead className="bg-linen text-left">
+        <thead className="bg-slate-50 text-left">
           <tr>
             <th className="p-3">Product</th>
             <th className="p-3">NPK</th>
@@ -26,9 +26,9 @@ export default function RecommendationTable({ rows, onApply }: { rows: any[]; on
               <td className="p-3">{row.locally_available_alternative || '-'}</td>
               <td className="p-3">
                 {!row.applied && onApply ? (
-                  <button aria-label={`Mark ${row.product || row.product_name || 'recommendation'} as applied`} className="rounded bg-leaf px-2 py-1 text-white" onClick={() => onApply(row.id)}>Mark as Applied</button>
+                  <button aria-label={`Mark ${row.product || row.product_name || 'recommendation'} as applied`} className="px-3 py-1.5 text-xs" onClick={() => onApply(row.id)}>Mark as Applied</button>
                 ) : (
-                  <span className="text-green-700">Applied</span>
+                  <span className="font-medium text-primary">Applied</span>
                 )}
               </td>
             </tr>
