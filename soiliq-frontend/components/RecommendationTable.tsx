@@ -26,7 +26,7 @@ export default function RecommendationTable({ rows, onApply }: { rows: any[]; on
               <td className="p-3">{row.locally_available_alternative || '-'}</td>
               <td className="p-3">
                 {!row.applied && onApply ? (
-                  <button aria-label={`Mark ${row.product || row.product_name || 'recommendation'} as applied`} className="px-3 py-1.5 text-xs" onClick={() => onApply(row.id)}>Mark as Applied</button>
+                  <button aria-label={`Mark ${row.product || row.product_name || 'recommendation'} as applied`} className="bg-primary px-3 py-1.5 text-xs text-white" onClick={() => onApply(row.id)}>Mark as Applied</button>
                 ) : (
                   <span className="font-medium text-primary">Applied</span>
                 )}
