@@ -63,7 +63,7 @@ export default function LandingPage() {
             'Photo Analysis',
             'Manual Input',
             'IoT Sensor Support',
-            'Local Language UX',
+            'Local Language',
             'Fertilizer Cost Calculator',
             'Weather-aware Insights'
           ].map((feature) => (
