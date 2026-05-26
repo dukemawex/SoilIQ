@@ -20,8 +20,8 @@ const config: Config = {
         charcoal: '#1F2937'
       },
       fontFamily: {
-        sans: ['var(--font-sans)', 'Inter', 'Plus Jakarta Sans', 'Figtree', 'system-ui', 'sans-serif'],
-        heading: ['var(--font-sans)', 'Inter', 'Plus Jakarta Sans', 'Figtree', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'Plus Jakarta Sans', 'Figtree', 'system-ui', 'sans-serif'],
+        heading: ['Inter', 'Plus Jakarta Sans', 'Figtree', 'system-ui', 'sans-serif'],
         mono: ['DM Mono', 'monospace']
       },
       borderRadius: {
